@@ -7,23 +7,34 @@
     "test": "mocha --require test/setup.js",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
+    "migrate": "postgrator --config postgrator-config.js",
     "predeploy": "npm audit",
     "deploy": "git push heroku master"
   },
   "keywords": [],
+  "engines": {
+    "node": "12.16.0"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "helmet": "^3.15.0",
-    "morgan": "^1.9.1"
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "knex": "^0.21.1",
+    "logger": "0.0.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.2.1",
+    "postgrator": "^4.0.1",
+    "winston": "^3.3.3",
+    "xss": "^1.0.7"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.9",
-    "supertest": "^3.4.1"
+    "nodemon": "^1.19.4",
+    "postgrator-cli": "^3.2.0",
+    "supertest": "^3.4.2"
   }
 }
