@@ -14,7 +14,8 @@ const serializeRecipe = recipe => ({
     cooktime: xss(recipe.cooktime),
     servings: xss(recipe.servings),
     ingredients: xss(recipe.ingredients),
-    directions: xss(recipe.directions)
+    directions: xss(recipe.directions),
+    status: xss(recipe.status)
 });
 
 recipeRouter
@@ -50,4 +51,50 @@ recipeRouter
         });
  });
 
+ recipeRouter
+    .route('/:id')
+    .all((req, res, next) => {
+        recipeService.getById(
+            req.app.get('db'),
+            req.params.id
+        )
+
+        .then(recipe => {
+            if(!recipe) {
+                return res.status(404).json({
+                    error: {message:'Recipe does not exist.'}
+                });
+            }
+            res.recipe = recipe;
+            next();
+        })
+        .catch(next);
+    })
+    
+    .get((req, res, next) => {
+        return res.json(serializeRecipe(res.recipe));
+    })
+
+    .put(bodyParser, (req, res, next) => {
+        const {recipename, experience, preptime, cooktime, servings, ingredients, directions, status} = req.body;
+        const recipeToUpdate = {recipename, experience, preptime, cooktime, servings, ingredients, directions, status};
+        const numberOfValues = Object.values(recipeToUpdate).filter(Boolean).length;
+
+        if (numberOfValues === 0) {
+            return res.status(400).json({
+              error: {
+                message: "request body must contain 'recipename', 'preptime', or 'cooktime'",
+              },
+            });
+          }
+  
+    recipeService
+    .editRecipe(req.app.get('db'), req.params.id, recipeToUpdate)
+    .then(() => {
+        res.status(204).end();
+    })
+    .catch(next)
+});
+
+    
  module.exports = recipeRouter;
