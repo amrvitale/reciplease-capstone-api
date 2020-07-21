@@ -8,6 +8,7 @@ const { NODE_ENV } = require('./config')
 const recipeRouter = require('./recipes/recipe-router')
 const recipeService = require('./recipes/recipe-service')
 const searchRecipesRouter = require('./searchRecipes/searchRecipes-router')
+const searchRecipesService = require('./searchRecipes/searchRecipes-service')
 
 const app = express()
 
@@ -21,9 +22,10 @@ app.use(helmet())
 app.options('*', cors());  // enable pre-flight
 
 app.use('/api/myrecipes', recipeRouter);
-app.get('/api/search', searchRecipesRouter)
+app.get('/api/search', searchRecipesRouter);
 app.get('/api/*', cors(), (req, res) => {
   res.json({ok: true});
+  console.log("res.json")
 });
 
   app.use(function errorHandler(error, req, res, next) {
@@ -31,7 +33,7 @@ app.get('/api/*', cors(), (req, res) => {
       if (NODE_ENV === 'production') {
         response = { error: { message: 'server error' } }
       } else {
-        console.error(error)
+        console.error(error, "error")
         response = { message: error.message, error }
       }
       res.status(500).json(response)

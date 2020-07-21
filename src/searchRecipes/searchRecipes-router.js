@@ -23,9 +23,11 @@ const serializeRecipe = recipe => ({
 searchRecipesRouter
     .route('/')
     .get((req, res, next) => {
+        console.log('hi, inside get for search router')
         const knexInstance = req.app.get('db');
         console.log(req.query, "my req.query")
         console.log("parts: ", req.query.recipename, req.query.ingredients);
+        
         searchRecipesService
         .searchRecipes(
             req.app.get('db'),
