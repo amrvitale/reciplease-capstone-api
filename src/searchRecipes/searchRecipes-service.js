@@ -19,19 +19,18 @@ const searchRecipesService = {
         console.log('ingredients', ingredients);
 
         let results = knex('recipes')
-            .select('*')
-            .where('status', 'published')
-            .andWhere((db) => {
-                if (recipename != null) {
-                    db.where('recipename', 'ILIKE', `$%{recipename}%`);
-                } 
-              /*  if (ingredients != null){ 
-                    db.orWhere('ingredients', 'ILIKE', `$%{ingredients}%`);
-                }*/
-            })
-        return results;
-    },
+        .select('*')
+        .where('status', 'published')
+        .andWhere((db) => {
+            if (recipename != null) {
+                db.where('recipename', 'ILIKE', `%${recipename}%`);
+            } 
+            if (ingredients != null){ 
+                db.orWhere('ingredients', 'ILIKE', `%${ingredients}%`);
+            }
+        })
+    return results;
+},
 }
-
 
 module.exports = searchRecipesService;
