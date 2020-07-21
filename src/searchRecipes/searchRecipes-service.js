@@ -1,6 +1,6 @@
 const searchRecipesService = {
     getByRecipename(knex, recipename) {
-        console.log(recipename)
+        console.log(recipename, "recipename")
         return knex 
             .from('recipes')
             .select('*')

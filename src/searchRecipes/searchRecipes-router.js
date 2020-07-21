@@ -24,16 +24,17 @@ searchRecipesRouter
     .route('/')
     .get((req, res, next) => {
         const knexInstance = req.app.get('db');
-        console.log(req.query)
-
+        console.log(req.query, "my req.query")
+        console.log("parts: ", req.query.recipename, req.query.ingredients);
         searchRecipesService
         .searchRecipes(
             req.app.get('db'),
             req.query.recipename,
-            req.query.ingredients
+            req.query.ingredients  
         )
+        
         .then(recipes => {
-            console.log(recipes)
+            console.log(recipes, "Angela was here")
             if(!recipes) {
                 return res.status(400).json({
                     error: {message: 'Error getting recipes.'}
@@ -42,5 +43,5 @@ searchRecipesRouter
             return res.json({recipes})
         })
     })
-
+console.log('can you see me?')
     module.exports = searchRecipesRouter;

@@ -7,6 +7,7 @@ const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
 const recipeRouter = require('./recipes/recipe-router')
 const recipeService = require('./recipes/recipe-service')
+const searchRecipesRouter = require('./searchRecipes/searchRecipes-router')
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(helmet())
 app.options('*', cors());  // enable pre-flight
 
 app.use('/api/myrecipes', recipeRouter);
+app.get('/api/search', searchRecipesRouter)
 app.get('/api/*', cors(), (req, res) => {
   res.json({ok: true});
 });
