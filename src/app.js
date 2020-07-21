@@ -22,7 +22,7 @@ app.use(helmet())
 app.options('*', cors());  // enable pre-flight
 
 app.use('/api/myrecipes', recipeRouter);
-app.get('/api/search', searchRecipesRouter);
+app.use('/api/search', searchRecipesRouter);
 app.get('/api/*', cors(), (req, res) => {
   res.json({ok: true});
   console.log("res.json")
