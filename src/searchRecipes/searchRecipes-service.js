@@ -21,13 +21,13 @@ const searchRecipesService = {
         let results = knex('recipes')
             .select('*')
             .where('status', 'published')
-            .where((db) => {
+            .andWhere((db) => {
                 if (recipename != null) {
                     db.where('recipename', 'ILIKE', `$%{recipename}%`);
                 } 
-                if (ingredients != null){ 
+              /*  if (ingredients != null){ 
                     db.orWhere('ingredients', 'ILIKE', `$%{ingredients}%`);
-                }
+                }*/
             })
         return results;
     },
