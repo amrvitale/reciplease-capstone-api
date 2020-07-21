@@ -11,20 +11,27 @@ const searchRecipesService = {
         return knex
             .from('recipes')
             .select('*')
-            .where('ingredients', ingredients);
+            .where('ingredients', 'ILIKE', ingredients);
     },
 
     searchRecipes(knex, recipename=null, ingredients=null){
         console.log('recipename', recipename);
         console.log('ingredients', ingredients);
 
-        let results = knex
-            .from('recipes')
-            .select('*').where('status', 'published')
-        if(recipename != null) results = results.where('recipename', 'ILIKE', `$%{recipename}%`);
-        if(ingredients != null) results = results.where('ingredients', 'ILIKE', `$%{ingredients}%`);
+        let results = knex('recipes')
+            .select('*')
+            .where('status', 'published')
+            .where((db) => {
+                if (recipename != null) {
+                    db.where('recipename', 'ILIKE', `$%{recipename}%`);
+                } 
+                if (ingredients != null){ 
+                    db.orWhere('ingredients', 'ILIKE', `$%{ingredients}%`);
+                }
+            })
         return results;
     },
 }
+
 
 module.exports = searchRecipesService;
