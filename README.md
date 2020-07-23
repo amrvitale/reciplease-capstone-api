@@ -1,3 +1,28 @@
+Welcome to Reciplease, my second capstone for the Bloc/Thinkful Web Developer program! 
+====================================================================================
+
+Link to the live Reciplease application: https://reciplease-capstone.amrvitale.now.sh/
+
+Summary
+--------
+Reciplease is a recipe application. Users can add and edit recipes, and then publish them to the Reciplease database.
+Once a recipe is published, it is available to the search component.
+Recipe lovers can search by recipe name or by ingredients.
+
+Technology Used
+---------------
+Client: React.js, vanilla CSS 
+API: Node.js, Express.js
+
+Reciplease Application Screenshots
+----------------------------------
+![Welcome page](https://raw.githubusercontent.com/amrvitale/reciplease-capstone/master/readmeImages/welcomepagescreenshot.PNG)
+![My Kitchen](https://raw.githubusercontent.com/amrvitale/reciplease-capstone/master/readmeImages/mykitchenscreenshot.PNG)
+![Post Recipe page](https://raw.githubusercontent.com/amrvitale/reciplease-capstone/master/readmeImages/postrecipepagescreenshot.PNG)
+![View My Recipes](https://raw.githubusercontent.com/amrvitale/reciplease-capstone/master/readmeImages/viewmyrecipesscreenshot.PNG)
+![Search page](https://raw.githubusercontent.com/amrvitale/reciplease-capstone/master/readmeImages/searchrecipescreenshot.PNG)
+![Published recipe](https://raw.githubusercontent.com/amrvitale/reciplease-capstone/master/readmeImages/publishedrecipescreenshot.PNG)
+
 Express Boilerplate
 -------------------
 This is a boilerplate project used for starting new projects!
